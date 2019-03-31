@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-LABEL "maintainer=alice_k106@naver.com"
+LABEL maintainer=alice_k106@naver.com
 WORKDIR /root
 RUN apt update && \
   apt install python3 python3-pip -y && \ 
