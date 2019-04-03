@@ -11,7 +11,9 @@ def get_request_info():
            'Access Server URL : {} \n' \
            'Container Hostname : {} \n' \
            'Container IP : {} \n' \
-           '-----\n'.format(request.path, request.base_url, host_name, host_ip)
+           'Original IP with Proxy : {}\n' \
+           '-----\n'.format(request.path, request.base_url, host_name, host_ip,
+             request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
     return data
 
 @app.route('/')
