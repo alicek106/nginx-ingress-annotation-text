@@ -6,14 +6,17 @@ app = Flask(__name__)
 def get_request_info():
     host_name = socket.gethostname()
     host_ip = socket.gethostbyname(host_name)
-    data = '----- \n' \
+    data = '------------------------ \n' \
            'You accessed to path "{}"\n' \
            'Access Server URL : {} \n' \
            'Container Hostname : {} \n' \
            'Container IP : {} \n' \
-           'Original IP with Proxy : {}\n' \
-           '-----\n'.format(request.path, request.base_url, host_name, host_ip,
-             request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+           'Original IP with Proxy : {}\n\n' \
+           '------------------------ \n' \
+           'Flask received HTTP header : \n'\
+           '{}\n' \
+           '------------------------\n'.format(request.path, request.base_url, host_name, host_ip,
+             request.environ.get('HTTP_X_REAL_IP', request.remote_addr), request.headers)
     return data
 
 @app.route('/')
