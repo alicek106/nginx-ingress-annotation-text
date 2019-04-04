@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: ingress-annotation-test
-          image: alicek106/ingress-annotation-test:0.0
+          image: alicek106/ingress-annotation-test:print-proxy-origin-ip
           ports:
             - name: flask
               containerPort: 5000
