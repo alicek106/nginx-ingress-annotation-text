@@ -2,17 +2,29 @@ from flask import Flask, request
 from pathlib import Path
 import time
 import socket
+import os
+import logging
 # Comment for Github version log
 app = Flask(__name__)
+logging.basicConfig(level=os.environ.get('LOG_LEVEL', 'INFO'))
+
+count = 0
 
 def get_request_info(path):
+    global count
+
     my_file = Path("/file")
     if my_file.is_file():
-        print("file exists")
+        logging.info("file exists")
         pass
     else:
-        print("sleep")
+        logging.info("sleep")
         time.sleep(10)
+
+    if os.environ['COUNT'] == "true":
+        count += 1
+        logging.info("count: {}".format(count))
+
     host_name = socket.gethostname()
     host_ip = socket.gethostbyname(host_name)
     data = '------------------------ \n' \
