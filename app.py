@@ -1,9 +1,18 @@
 from flask import Flask, request
+from pathlib import Path
+import time
 import socket
 # Comment for Github version log
 app = Flask(__name__)
 
 def get_request_info(path):
+    my_file = Path("/file")
+    if my_file.is_file():
+        print("file exists")
+        pass
+    else:
+        print("sleep")
+        time.sleep(10)
     host_name = socket.gethostname()
     host_ip = socket.gethostbyname(host_name)
     data = '------------------------ \n' \
@@ -37,4 +46,4 @@ def path_color_blue():
     return get_request_info('/color/blue')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80)
