@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: ingress-annotation-test-spring
+  labels:
+    app: ingress-annotation-test-spring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ingress-annotation-test-spring
+  template:
+    metadata:
+      labels:
+        app: ingress-annotation-test-spring
+    spec:
+      containers:
+        - name: ingress-annotation-test-spring
+          image: alicek106/ingress-annotation-test:spring
+          ports:
+          - name: web
+            containerPort: 80
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-annotation-test-spring-svc
+spec:
+  ports:
+  - name: web
+    port: 80
+    targetPort: web
+    nodePort: 30002
+  selector:
+    app: ingress-annotation-test-spring
+  type: NodePort
+
