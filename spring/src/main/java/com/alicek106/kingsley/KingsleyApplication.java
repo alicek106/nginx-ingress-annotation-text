@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KingsleyApplication {
     // Below variables will be set in environment val :D:D:D:D:D by alicek106
-        private final static String JAEGER_HOST = System.getenv("CONF_JAEGER_HOST");
-        private final static String JAEGER_PORT = System.getenv("CONF_JAEGER_PORT");
+        public final static String JAEGER_HOST = System.getenv("CONF_JAEGER_HOST");
+        public final static String JAEGER_PORT = System.getenv("CONF_JAEGER_PORT");
 
     public static void main(String[] args) {
         System.setProperty("spring.application.name", "alicek106-spring-test");

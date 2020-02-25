@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ingress-annotation-test-spring
@@ -28,6 +28,10 @@ spec:
               fieldPath: status.hostIP
         - name: CONF_JAEGER_PORT
           value: "6831"
+        - name: CONF_JAEGER_ENABLED
+          value: "true"
+        - name: CONF_JAEGER_PORT
+          value: "true"
 ---
 apiVersion: v1
 kind: Service
