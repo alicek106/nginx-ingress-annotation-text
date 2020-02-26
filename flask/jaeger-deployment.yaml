@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ingress-annotation-test-spring
+  name: ingress-annotation-test-flask
   labels:
-    app: ingress-annotation-test-spring
+    app: ingress-annotation-test-flask
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ingress-annotation-test-spring
+      app: ingress-annotation-test-flask
   template:
     metadata:
       labels:
-        app: ingress-annotation-test-spring
+        app: ingress-annotation-test-flask
     spec:
       containers:
-      - name: ingress-annotation-test-spring
-        image: alicek106/ingress-annotation-test:spring-jaeger
+      - name: ingress-annotation-test-flask
+        image: alicek106/ingress-annotation-test:flask-jaeger
         ports:
         - name: web
           containerPort: 80
@@ -30,19 +30,21 @@ spec:
           value: "6831"
         - name: CONF_SLEEP_ENABLED
           value: "false"
-        - name: CONF_JAEGER_ENABLED
+        - name: REQUEST_TO_SPRING_ENABLED
           value: "true"
+        - name: SPRING_ENDPOINT
+          value: "http://ingress-annotation-test-spring-svc"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingress-annotation-test-spring-svc
+  name: ingress-annotation-test-flask-svc
 spec:
   ports:
   - name: web
     port: 80
     targetPort: web
   selector:
-    app: ingress-annotation-test-spring
+    app: ingress-annotation-test-flask
   type: ClusterIP
 
