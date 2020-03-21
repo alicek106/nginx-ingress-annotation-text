@@ -18,7 +18,7 @@ spec:
       - name: ingress-annotation-test-flask
         image: alicek106/ingress-annotation-test:flask-jaeger
         ports:
-        - name: web
+        - name: http
           containerPort: 80
         imagePullPolicy: Always
         env:
@@ -41,9 +41,9 @@ metadata:
   name: ingress-annotation-test-flask-svc
 spec:
   ports:
-  - name: web
+  - name: http
     port: 80
-    targetPort: web
+    targetPort: http
   selector:
     app: ingress-annotation-test-flask
   type: ClusterIP

@@ -18,7 +18,7 @@ spec:
       - name: ingress-annotation-test-spring
         image: alicek106/ingress-annotation-test:spring-jaeger
         ports:
-        - name: web
+        - name: http
           containerPort: 80
         imagePullPolicy: Always
         env:
@@ -39,9 +39,9 @@ metadata:
   name: ingress-annotation-test-spring-svc
 spec:
   ports:
-  - name: web
+  - name: http
     port: 80
-    targetPort: web
+    targetPort: http
   selector:
     app: ingress-annotation-test-spring
   type: ClusterIP
