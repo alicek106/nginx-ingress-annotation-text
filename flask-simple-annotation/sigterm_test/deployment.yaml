@@ -4,28 +4,24 @@ metadata:
   name: liveness-sigterm-test
   labels:
     app: liveness-sigterm-test
-
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: liveness-sigterm-test
-
   template:
     metadata:
       labels:
         app: liveness-sigterm-test
-
-    # Container Spec
     spec:
       containers:
-        - name: liveness-sigterm-test
-          image: alicek106/sigterm-test
-          imagePullPolicy: Always
-          livenessProbe:
-            exec:
-              command:
-              - cat
-              - /file
-            initialDelaySeconds: 5
-            periodSeconds: 5
+      - name: liveness-sigterm-test
+        image: alicek106/sigterm-test
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /file
+          initialDelaySeconds: 5
+          periodSeconds: 5

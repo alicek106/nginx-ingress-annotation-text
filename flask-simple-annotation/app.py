@@ -4,26 +4,16 @@ import time
 import socket
 import os
 import logging
-# Comment for Github version log
+
 app = Flask(__name__)
 logging.basicConfig(level=os.environ.get('LOG_LEVEL', 'INFO'))
 
-count = 0
-
 def get_request_info(path):
-    global count
-
     my_file = Path("/file")
     if my_file.is_file():
-        logging.info("file exists")
         pass
     else:
-        logging.info("sleep")
-        time.sleep(10)
-
-    if os.environ['COUNT'] == "true":
-        count += 1
-        logging.info("count: {}".format(count))
+        time.sleep(int(os.environ['SLEEP_INTERVAL']))
 
     host_name = socket.gethostname()
     host_ip = socket.gethostbyname(host_name)
